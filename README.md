@@ -1,72 +1,51 @@
-📘 Business Consultant — PezzaliAPP
+# Business Consultant — PezzaliAPP
 
-Business Consultant è una Progressive Web App progettata per venditori, amministrazione e consulenti commerciali.
-Una piattaforma modulare che offre strumenti tecnici, calcolatori professionali e formule utilizzate ogni giorno nella gestione di preventivi, trattative e analisi economiche.
+![Business Consultant Cover](icons/cover.png)
 
-Interamente in stile PezzaliAPP: minimal, veloce, offline-ready e installabile su qualsiasi dispositivo.
+**Business Consultant** è una Progressive Web App progettata per venditori, amministrazione e consulenti commerciali.  
+Una piattaforma modulare che offre calcolatori professionali, strumenti tecnici e formule utilizzate quotidianamente nella gestione di preventivi e trattative.
 
-⸻
+Interfaccia minimal dark, stile **PezzaliAPP**, installabile su qualsiasi dispositivo e funzionante anche offline.
 
-⚙️ Moduli attivi (versione attuale)
+---
 
-1. Margine ⇄ Ricarico
+## ⚙️ Moduli attivi
 
+### **1. Margine ⇄ Ricarico**  
 Conversione professionale tra:
-	•	Margine sul prezzo di vendita
-	•	Ricarico / Mark-up sul costo
+- Margine sul prezzo di vendita  
+- Ricarico / Mark-up sul costo  
 
 Basato sulle formule ufficiali della contabilità analitica.
 
-⸻
+---
 
-2. Ricarico ⇄ Margine
+### **2. Ricarico ⇄ Margine**  
+Calcolo inverso del margine reale partendo da un ricarico/mark-up.
 
-Calcolo inverso: partendo da ricarico/mark-up si ottiene il margine reale.
+---
 
-⸻
-
-3. Costo + Margine → Prezzo di vendita
-
+### **3. Costo + Margine → Prezzo di vendita**  
 Inserisci:
-	•	Costo
-	•	Margine desiderato
+- costo  
+- margine desiderato (%)  
 
 La PWA calcola:
-	•	Prezzo finale
-	•	Utile
-	•	Ricarico implicito
+- prezzo finale  
+- utile  
+- ricarico implicito  
 
-Perfetto per preventivi e offerte con margine obiettivo.
+---
 
-⸻
-
-4. Costo + Ricarico → Prezzo + Margine reale
-
+### **4. Costo + Ricarico → Prezzo + Margine reale**  
 Inserisci:
-	•	Costo
-	•	Ricarico (mark-up sul costo)
+- costo  
+- ricarico (%)  
 
-Ottieni:
-	•	Prezzo finale
-	•	Utile
-	•	Margine reale sul prezzo
-
-Modulo indispensabile per listini con ricarichi standard.
-
-⸻
-
-🎨 Caratteristiche
-	•	📱 Installabile su iPhone, Android e desktop
-	•	⚡ Funziona completamente offline
-	•	🌓 Interfaccia dark professionale in stile PezzaliAPP
-	•	🔧 Architettura modulare: aggiunta facile di nuovi strumenti
-	•	🚀 Ultra-leggera e rapidissima
-	•	🧭 Ideale per venditori, amministrazione e consulenti commerciali
-
-⸻
-
-🛠️ Struttura del progetto
-
+La PWA restituisce:
+- prezzo finale  
+- utile  
+- margine reale sul prezzo  
 business-consultant/
 │
 ├── index.html
@@ -75,61 +54,42 @@ business-consultant/
 ├── manifest.webmanifest
 ├── service-worker.js
 └── icons/
-      ├── icon-192.png
-      ├── icon-512.png
-      └── cover.png
+├── icon-192.png
+├── icon-512.png
+└── cover.png
+---
 
+## 🚀 Moduli in arrivo (roadmap)
 
-⸻
+- Prezzo con margine netto reale  
+- IVA reverse / IVA inclusa ↔ esclusa  
+- Break-even semplificato  
+- Rata leasing & noleggio operativo (formula stile Excel BCC)  
+- Calcolo interessi, tassi, scadenze  
+- Utility per venditori (sconti sequenziali, provvigioni, netto/lordo)  
+- Mini-CRM numerico  
 
-🚀 Moduli in arrivo (roadmap)
+---
 
-🔹 5. Prezzo con margine netto reale
+## 📦 Installazione (GitHub Pages)
 
-Integrazione dei costi interni, utile per margini operativi.
+1. Carica tutti i file nel repository  
+2. Vai in **Settings → Pages**  
+3. Imposta:  
+   - Branch → `main`  
+   - Folder → `/ (root)`  
+4. Apri la pagina generata  
+5. Su smartphone → **Aggiungi alla Home**
 
-🔹 6. IVA reverse / IVA inclusa ↔ esclusa
+L'app diventa installabile come una vera app nativa.
 
-Calcolo rapido per preventivi e offerte.
+---
 
-🔹 7. Break-even semplificato
+## 👨‍💻 Autore
 
-Analisi del punto di pareggio aziendale.
+**PezzaliAPP**  
+Strumenti digitali professionali per venditori, consulenti e amministrazione.  
+Minimal. Veloce. Open-source. Creato per la produttività reale.
+---
 
-🔹 8. Rata leasing & noleggio operativo
-
-Formula completa stile Excel BCC.
-
-🔹 9. Calcolo interessi, tassi e scadenze
-
-Per dilazioni e calcoli finanziari.
-
-🔹 10. Utility per venditori
-	•	sconti sequenziali
-	•	prezzo netto/lordo
-	•	calcolo provvigioni
-
-🔹 11. Mini-CRM numerico
-
-KPI, conversioni, clienti, pipeline essenziale.
-
-⸻
-
-📦 Installazione (GitHub Pages)
-	1.	Carica tutti i file nel repository
-	2.	Vai in Settings → Pages
-	3.	Imposta:
-	•	Branch → main
-	•	Folder → / (root)
-	4.	Apri la pagina generata
-	5.	Su smartphone → Aggiungi alla Home
-
-L’app è installabile e funziona come un’app nativa.
-
-⸻
-
-👨‍💻 Autore
-
-PezzaliAPP
-Strumenti digitali professionali per venditori, consulenti e amministrazione.
-Open-source. Minimal. Veloce. Creato per la produttività reale.
+## 🧩 Struttura del progetto
