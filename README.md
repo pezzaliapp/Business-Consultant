@@ -9,23 +9,24 @@ Interfaccia minimal dark, stile **PezzaliAPP**, installabile su qualsiasi dispos
 
 ---
 
-## ⚙️ Moduli attivi
+## Moduli attivi
 
-### **1. Margine ⇄ Ricarico**  
+### 1. Margine ⇄ Ricarico  
 Conversione professionale tra:
-- Margine sul prezzo di vendita  
-- Ricarico / Mark-up sul costo  
+- margine sul prezzo di vendita  
+- ricarico / mark-up sul costo  
 
 Basato sulle formule ufficiali della contabilità analitica.
 
 ---
 
-### **2. Ricarico ⇄ Margine**  
+### 2. Ricarico ⇄ Margine  
 Calcolo inverso del margine reale partendo da un ricarico/mark-up.
 
 ---
 
-### **3. Costo + Margine → Prezzo di vendita**  
+### 3. Costo + Margine → Prezzo di vendita  
+
 Inserisci:
 - costo  
 - margine desiderato (%)  
@@ -37,7 +38,8 @@ La PWA calcola:
 
 ---
 
-### **4. Costo + Ricarico → Prezzo + Margine reale**  
+### 4. Costo + Ricarico → Prezzo + Margine reale  
+
 Inserisci:
 - costo  
 - ricarico (%)  
@@ -46,17 +48,22 @@ La PWA restituisce:
 - prezzo finale  
 - utile  
 - margine reale sul prezzo  
+
+---
+
+## Struttura del progetto
+
+```text
 business-consultant/
-│
 ├── index.html
 ├── style.css
 ├── app.js
 ├── manifest.webmanifest
 ├── service-worker.js
 └── icons/
-├── icon-192.png
-├── icon-512.png
-└── cover.png
+    ├── icon-192.png
+    ├── icon-512.png
+    └── cover.png
 ---
 
 ## 🚀 Moduli in arrivo (roadmap)
@@ -90,6 +97,3 @@ L'app diventa installabile come una vera app nativa.
 **PezzaliAPP**  
 Strumenti digitali professionali per venditori, consulenti e amministrazione.  
 Minimal. Veloce. Open-source. Creato per la produttività reale.
----
-
-## 🧩 Struttura del progetto
