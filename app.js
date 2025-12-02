@@ -147,6 +147,53 @@ function calcPrezzoNettoReale() {
     " — Ricarico effettivo = " + formatPercent(ricaricoReale * 100);
 }
 
+// 6) BREAK-EVEN SEMPLIFICATO
+function calcBreakEven() {
+  const out = document.getElementById('outBreakeven');
+  let costiFissi = parseFloat(document.getElementById('costi-fissi').value);
+  let prezzoUnitario = parseFloat(document.getElementById('prezzo-unitario').value);
+  let costoVariabile = parseFloat(document.getElementById('costo-variabile').value);
+
+  if (isNaN(costiFissi) || costiFissi <= 0) {
+    out.textContent = "Inserisci costi fissi validi.";
+    out.classList.add('error');
+    return;
+  }
+
+  if (isNaN(prezzoUnitario) || prezzoUnitario <= 0) {
+    out.textContent = "Inserisci un prezzo unitario valido.";
+    out.classList.add('error');
+    return;
+  }
+
+  if (isNaN(costoVariabile) || costoVariabile < 0) {
+    out.textContent = "Inserisci un costo variabile unitario valido (anche 0).";
+    out.classList.add('error');
+    return;
+  }
+
+  const contribuzione = prezzoUnitario - costoVariabile;
+
+  if (contribuzione <= 0) {
+    out.textContent = "Il prezzo deve essere maggiore del costo variabile unitario.";
+    out.classList.add('error');
+    return;
+  }
+
+  out.classList.remove('error');
+
+  const qRaw = costiFissi / contribuzione;   // quantità teorica
+  const q = Math.ceil(qRaw);                 // arrotondata all'unità superiore
+  const fatturatoPareggio = q * prezzoUnitario;
+  const margineContribPerc = contribuzione / prezzoUnitario; // % contribuzione
+
+  out.textContent =
+    "Punto di pareggio = " + q + " unità" +
+    " — Fatturato di pareggio = " + formatMoney(fatturatoPareggio) +
+    " — Margine di contribuzione unitario = " + formatMoney(contribuzione) +
+    " — Margine di contribuzione = " + formatPercent(margineContribPerc * 100);
+}
+
 // Hook bottoni + invio
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-margine')
@@ -163,6 +210,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('btn-prezzo-netto')
     .addEventListener('click', calcPrezzoNettoReale);
+
+  document.getElementById('btn-breakeven')
+    .addEventListener('click', calcBreakEven);
 
   document.getElementById('margine').addEventListener('keyup', e => {
     if (e.key === 'Enter') calcFromMargine();
@@ -198,5 +248,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('margine-netto').addEventListener('keyup', e => {
     if (e.key === 'Enter') calcPrezzoNettoReale();
+  });
+
+  document.getElementById('costi-fissi').addEventListener('keyup', e => {
+    if (e.key === 'Enter') calcBreakEven();
+  });
+
+  document.getElementById('prezzo-unitario').addEventListener('keyup', e => {
+    if (e.key === 'Enter') calcBreakEven();
+  });
+
+  document.getElementById('costo-variabile').addEventListener('keyup', e => {
+    if (e.key === 'Enter') calcBreakEven();
   });
 });
