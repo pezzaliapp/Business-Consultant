@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Margine ⇄ Ricarico — PezzaliAPP</title>
+  <title>Business Consultant — PezzaliAPP</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#050816">
 
@@ -21,23 +21,23 @@
       <div class="brand-dot"></div>
       <div class="brand-text">
         <span class="brand-title">PezzaliAPP</span>
-        <span class="brand-subtitle">Margine ⇄ Ricarico</span>
+        <span class="brand-subtitle">Business Consultant</span>
       </div>
     </div>
   </header>
 
   <main class="app-main">
     <section class="card">
-      <h1>Conversione Margine / Ricarico</h1>
+      <h1>Strumenti Business Consultant</h1>
       <p class="hint">
-        Inserisci una percentuale e ottieni l’altra.
-        Le formule sono quelle “da manuale”: nessuna magia, solo matematica pulita.
+        Margine, ricarico e prezzo di vendita: tre calcoli, stessa logica.
+        Strumenti pensati per venditori e amministrazione.
       </p>
 
       <div class="grid">
         <!-- MARGINE → RICARICO -->
         <div class="panel">
-          <h2>Da Margine a Ricarico</h2>
+          <h2>1. Da Margine a Ricarico</h2>
           <label for="margine">Margine sul prezzo (%)</label>
           <input id="margine" type="number" step="0.01" placeholder="Es. 30">
           <button type="button" id="btn-margine">Calcola Ricarico</button>
@@ -47,19 +47,36 @@
 
         <!-- RICARICO → MARGINE -->
         <div class="panel">
-          <h2>Da Ricarico a Margine</h2>
+          <h2>2. Da Ricarico a Margine</h2>
           <label for="ricarico">Ricarico / mark-up sul costo (%)</label>
           <input id="ricarico" type="number" step="0.01" placeholder="Es. 42.86">
           <button type="button" id="btn-ricarico">Calcola Margine</button>
           <p id="outMargine" class="result"></p>
           <p class="note">Formula: margine = ricarico / (1 + ricarico)</p>
         </div>
+
+        <!-- PREZZO DA COSTO + MARGINE -->
+        <div class="panel">
+          <h2>3. Prezzo con margine desiderato</h2>
+          <label for="costo-prezzo">Costo (€)</label>
+          <input id="costo-prezzo" type="number" step="0.01" placeholder="Es. 6800">
+
+          <label for="margine-prezzo" style="margin-top:8px;">Margine sul prezzo (%)</label>
+          <input id="margine-prezzo" type="number" step="0.01" placeholder="Es. 30">
+
+          <button type="button" id="btn-prezzo">Calcola Prezzo di vendita</button>
+          <p id="outPrezzo" class="result"></p>
+          <p class="note">
+            Formula: prezzo = costo / (1 − margine).<br>
+            Il margine è sul prezzo, il ricarico è sul costo.
+          </p>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="app-footer">
-    <span>PezzaliAPP — Calcolatore tecnico, offline-ready.</span>
+    <span>PezzaliAPP — Business Consultant. Calcoli tecnici, offline-ready.</span>
   </footer>
 
   <script src="app.js"></script>
