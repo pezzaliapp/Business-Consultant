@@ -75,6 +75,37 @@ function calcPrezzoDaMargine() {
     ", Ricarico = " + formatPercent(Mc * 100) + ")";
 }
 
+// 4) COSTO + RICARICO → PREZZO + MARGINE REALE
+function calcPrezzoDaRicarico() {
+  const out = document.getElementById('outPrezzoRicarico');
+  let costo = parseFloat(document.getElementById('costo-ricarico').value);
+  let r = parseFloat(document.getElementById('ricarico-prezzo').value);
+
+  if (isNaN(costo) || costo <= 0) {
+    out.textContent = "Inserisci un costo valido.";
+    out.classList.add('error');
+    return;
+  }
+
+  if (isNaN(r) || r <= 0) {
+    out.textContent = "Inserisci un ricarico valido (>0).";
+    out.classList.add('error');
+    return;
+  }
+
+  out.classList.remove('error');
+
+  const Mc = r / 100;              // ricarico decimale
+  const prezzo = costo * (1 + Mc); // prezzo = costo × (1 + ricarico)
+  const utile = prezzo - costo;
+  const Ms = utile / prezzo;       // margine reale sul prezzo
+
+  out.textContent =
+    "Prezzo = " + formatMoney(prezzo) +
+    " — Utile = " + formatMoney(utile) +
+    " — Margine reale = " + formatPercent(Ms * 100);
+}
+
 // Hook bottoni + invio
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-margine')
@@ -85,6 +116,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('btn-prezzo')
     .addEventListener('click', calcPrezzoDaMargine);
+
+  document.getElementById('btn-prezzo-ricarico')
+    .addEventListener('click', calcPrezzoDaRicarico);
 
   document.getElementById('margine').addEventListener('keyup', e => {
     if (e.key === 'Enter') calcFromMargine();
@@ -100,5 +134,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('margine-prezzo').addEventListener('keyup', e => {
     if (e.key === 'Enter') calcPrezzoDaMargine();
+  });
+
+  document.getElementById('costo-ricarico').addEventListener('keyup', e => {
+    if (e.key === 'Enter') calcPrezzoDaRicarico();
+  });
+
+  document.getElementById('ricarico-prezzo').addEventListener('keyup', e => {
+    if (e.key === 'Enter') calcPrezzoDaRicarico();
   });
 });
