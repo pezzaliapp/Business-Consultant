@@ -3,29 +3,27 @@
 ![Business Consultant Cover](icons/cover.png)
 
 **Business Consultant** è una Progressive Web App progettata per venditori, amministrazione e consulenti commerciali.  
-Una piattaforma modulare che offre calcolatori professionali, strumenti tecnici e formule utilizzate quotidianamente nella gestione di preventivi e trattative.
+Una piattaforma modulare che offre calcolatori professionali, strumenti tecnici e formule utilizzate quotidianamente nella gestione di preventivi, trattative, analisi costi e redditività.
 
 Interfaccia minimal dark, stile **PezzaliAPP**, installabile su qualsiasi dispositivo e funzionante anche offline.
 
 ---
 
-## Moduli attivi
+## ⚙️ Moduli attivi (versione corrente)
 
-### 1. Margine ⇄ Ricarico  
-Conversione professionale tra:
+### **1. Margine ⇄ Ricarico**  
+Conversione immediata tra:
 - margine sul prezzo di vendita  
 - ricarico / mark-up sul costo  
 
-Basato sulle formule ufficiali della contabilità analitica.
+---
+
+### **2. Ricarico ⇄ Margine**  
+Calcolo inverso del margine reale partendo da un ricarico.
 
 ---
 
-### 2. Ricarico ⇄ Margine  
-Calcolo inverso del margine reale partendo da un ricarico/mark-up.
-
----
-
-### 3. Costo + Margine → Prezzo di vendita  
+### **3. Costo + Margine → Prezzo di vendita**  
 
 Inserisci:
 - costo  
@@ -38,7 +36,7 @@ La PWA calcola:
 
 ---
 
-### 4. Costo + Ricarico → Prezzo + Margine reale  
+### **4. Costo + Ricarico → Prezzo + Margine reale**  
 
 Inserisci:
 - costo  
@@ -51,7 +49,42 @@ La PWA restituisce:
 
 ---
 
-## Struttura del progetto
+### **5. Costo + Costi interni + Margine → Prezzo netto reale**  
+
+Per calcolare un prezzo che includa:
+- costo merce  
+- costi interni (fissi o variabili)  
+- margine desiderato sul prezzo  
+
+Output:
+- prezzo netto reale  
+- utile reale  
+- margine effettivo  
+- ricarico effettivo  
+
+---
+
+### **6. Break-even semplificato (Punto di pareggio)**  
+
+Inserisci:
+- costi fissi totali  
+- prezzo unitario  
+- costo variabile unitario  
+
+La PWA calcola automaticamente:
+- **quantità di pareggio (Q)**  
+- **fatturato di pareggio**  
+- **margine di contribuzione unitario**  
+- **% margine di contribuzione**  
+
+Formula base:
+\[
+Q = \frac{\text{Costi fissi}}{\text{Prezzo unitario} - \text{Costo variabile unitario}}
+\]
+
+---
+
+## 🧩 Struttura del progetto
 
 ```text
 business-consultant/
@@ -69,13 +102,14 @@ business-consultant/
 
 ## 🚀 Moduli in arrivo (roadmap)
 
-- Prezzo con margine netto reale  
 - IVA reverse / IVA inclusa ↔ esclusa  
-- Break-even semplificato  
 - Rata leasing & noleggio operativo (formula stile Excel BCC)  
 - Calcolo interessi, tassi, scadenze  
 - Utility per venditori (sconti sequenziali, provvigioni, netto/lordo)  
-- Mini-CRM numerico  
+- Mini-CRM numerico
+- Calcolo ROI / ROS / ROE semplificati
+- Margine di contribuzione multiprodotto
+- Simulatore scenari “what-if”
 
 ---
 
