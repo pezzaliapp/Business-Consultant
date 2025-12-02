@@ -106,6 +106,47 @@ function calcPrezzoDaRicarico() {
     " — Margine reale = " + formatPercent(Ms * 100);
 }
 
+// 5) COSTO MERCE + COSTI INTERNI + MARGINE → PREZZO NETTO REALE
+function calcPrezzoNettoReale() {
+  const out = document.getElementById('outPrezzoNetto');
+  let costoMerce = parseFloat(document.getElementById('costo-merce').value);
+  let costiInterni = parseFloat(document.getElementById('costi-interni').value);
+  let m = parseFloat(document.getElementById('margine-netto').value);
+
+  if (isNaN(costoMerce) || costoMerce <= 0) {
+    out.textContent = "Inserisci un costo merce valido.";
+    out.classList.add('error');
+    return;
+  }
+
+  if (isNaN(costiInterni) || costiInterni < 0) {
+    out.textContent = "Inserisci costi interni validi (anche 0).";
+    out.classList.add('error');
+    return;
+  }
+
+  if (isNaN(m) || m <= 0 || m >= 100) {
+    out.textContent = "Inserisci un margine desiderato tra 0 e 100.";
+    out.classList.add('error');
+    return;
+  }
+
+  out.classList.remove('error');
+
+  const Ms = m / 100;                      // margine decimale
+  const costoTotale = costoMerce + costiInterni;
+  const prezzo = costoTotale / (1 - Ms);   // Prezzo = (costoTotale) / (1 − M_s)
+  const utile = prezzo - costoTotale;
+  const margineReale = utile / prezzo;     // margine effettivo sul prezzo
+  const ricaricoReale = utile / costoTotale; // ricarico su costo totale
+
+  out.textContent =
+    "Prezzo netto reale = " + formatMoney(prezzo) +
+    " — Utile = " + formatMoney(utile) +
+    " — Margine effettivo = " + formatPercent(margineReale * 100) +
+    " — Ricarico effettivo = " + formatPercent(ricaricoReale * 100);
+}
+
 // Hook bottoni + invio
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-margine')
@@ -119,6 +160,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('btn-prezzo-ricarico')
     .addEventListener('click', calcPrezzoDaRicarico);
+
+  document.getElementById('btn-prezzo-netto')
+    .addEventListener('click', calcPrezzoNettoReale);
 
   document.getElementById('margine').addEventListener('keyup', e => {
     if (e.key === 'Enter') calcFromMargine();
@@ -142,5 +186,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('ricarico-prezzo').addEventListener('keyup', e => {
     if (e.key === 'Enter') calcPrezzoDaRicarico();
+  });
+
+  document.getElementById('costo-merce').addEventListener('keyup', e => {
+    if (e.key === 'Enter') calcPrezzoNettoReale();
+  });
+
+  document.getElementById('costi-interni').addEventListener('keyup', e => {
+    if (e.key === 'Enter') calcPrezzoNettoReale();
+  });
+
+  document.getElementById('margine-netto').addEventListener('keyup', e => {
+    if (e.key === 'Enter') calcPrezzoNettoReale();
   });
 });
