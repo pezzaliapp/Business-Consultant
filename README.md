@@ -64,6 +64,7 @@ business-consultant/
     ├── icon-192.png
     ├── icon-512.png
     └── cover.png
+```
 ---
 
 ## 🚀 Moduli in arrivo (roadmap)
