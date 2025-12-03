@@ -252,90 +252,44 @@ function calcBreakEvenOperativo() {
     " — Margine operativo effettivo = " + formatPercent(margineOpReale * 100);
 }
 
-// Hook bottoni + invio
+// Hook bottoni + invio (versione sicura)
 window.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('btn-margine')
-    .addEventListener('click', calcFromMargine);
 
-  document.getElementById('btn-ricarico')
-    .addEventListener('click', calcFromRicarico);
+  // Helper per registrare gli eventi solo se l'elemento esiste
+  const on = (id, event, fn) => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener(event, fn);
+  };
 
-  document.getElementById('btn-prezzo')
-    .addEventListener('click', calcPrezzoDaMargine);
+  // --- BUTTONS ---
+  on('btn-margine', 'click', calcFromMargine);
+  on('btn-ricarico', 'click', calcFromRicarico);
+  on('btn-prezzo', 'click', calcPrezzoDaMargine);
+  on('btn-prezzo-ricarico', 'click', calcPrezzoDaRicarico);
+  on('btn-prezzo-netto', 'click', calcPrezzoNettoReale);
+  on('btn-breakeven', 'click', calcBreakEven);
+  on('btn-breakeven-ope', 'click', calcBreakEvenOperativo);
 
-  document.getElementById('btn-prezzo-ricarico')
-    .addEventListener('click', calcPrezzoDaRicarico);
+  // --- ENTER KEY (input fields) ---
+  on('margine', 'keyup', e => { if (e.key === 'Enter') calcFromMargine(); });
+  on('ricarico', 'keyup', e => { if (e.key === 'Enter') calcFromRicarico(); });
 
-  document.getElementById('btn-prezzo-netto')
-    .addEventListener('click', calcPrezzoNettoReale);
+  on('costo-prezzo', 'keyup', e => { if (e.key === 'Enter') calcPrezzoDaMargine(); });
+  on('margine-prezzo', 'keyup', e => { if (e.key === 'Enter') calcPrezzoDaMargine(); });
 
-  document.getElementById('btn-breakeven')
-    .addEventListener('click', calcBreakEven);
+  on('costo-ricarico', 'keyup', e => { if (e.key === 'Enter') calcPrezzoDaRicarico(); });
+  on('ricarico-prezzo', 'keyup', e => { if (e.key === 'Enter') calcPrezzoDaRicarico(); });
 
-  document.getElementById('btn-breakeven-ope')
-    .addEventListener('click', calcBreakEvenOperativo);
+  on('costo-merce', 'keyup', e => { if (e.key === 'Enter') calcPrezzoNettoReale(); });
+  on('costi-interni', 'keyup', e => { if (e.key === 'Enter') calcPrezzoNettoReale(); });
+  on('margine-netto', 'keyup', e => { if (e.key === 'Enter') calcPrezzoNettoReale(); });
 
-  document.getElementById('margine').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcFromMargine();
-  });
+  on('costi-fissi', 'keyup', e => { if (e.key === 'Enter') calcBreakEven(); });
+  on('prezzo-unitario', 'keyup', e => { if (e.key === 'Enter') calcBreakEven(); });
+  on('costo-variabile', 'keyup', e => { if (e.key === 'Enter') calcBreakEven(); });
 
-  document.getElementById('ricarico').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcFromRicarico();
-  });
-
-  document.getElementById('costo-prezzo').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcPrezzoDaMargine();
-  });
-
-  document.getElementById('margine-prezzo').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcPrezzoDaMargine();
-  });
-
-  document.getElementById('costo-ricarico').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcPrezzoDaRicarico();
-  });
-
-  document.getElementById('ricarico-prezzo').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcPrezzoDaRicarico();
-  });
-
-  document.getElementById('costo-merce').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcPrezzoNettoReale();
-  });
-
-  document.getElementById('costi-interni').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcPrezzoNettoReale();
-  });
-
-  document.getElementById('margine-netto').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcPrezzoNettoReale();
-  });
-
-  document.getElementById('costi-fissi').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcBreakEven();
-  });
-
-  document.getElementById('prezzo-unitario').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcBreakEven();
-  });
-
-  document.getElementById('costo-variabile').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcBreakEven();
-  });
-
-  document.getElementById('costi-fissi-ope').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcBreakEvenOperativo();
-  });
-
-  document.getElementById('prezzo-unitario-ope').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcBreakEvenOperativo();
-  });
-
-  document.getElementById('costo-variabile-ope').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcBreakEvenOperativo();
-  });
-
-  document.getElementById('margine-operativo').addEventListener('keyup', e => {
-    if (e.key === 'Enter') calcBreakEvenOperativo();
-  });
+  on('costi-fissi-ope', 'keyup', e => { if (e.key === 'Enter') calcBreakEvenOperativo(); });
+  on('prezzo-unitario-ope', 'keyup', e => { if (e.key === 'Enter') calcBreakEvenOperativo(); });
+  on('costo-variabile-ope', 'keyup', e => { if (e.key === 'Enter') calcBreakEvenOperativo(); });
+  on('margine-operativo', 'keyup', e => { if (e.key === 'Enter') calcBreakEvenOperativo(); });
 });
