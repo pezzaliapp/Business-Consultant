@@ -360,7 +360,3 @@ window.addEventListener('DOMContentLoaded', () => {
   on('quantita-min', 'keyup', e => { if (e.key === 'Enter') calcPrezzoMinimoOperativo(); });
   on('margine-operativo-min', 'keyup', e => { if (e.key === 'Enter') calcPrezzoMinimoOperativo(); });
 });
-
-// espone le funzioni per eventuali onclick inline
-window.calcBreakEvenOperativo = calcBreakEvenOperativo;
-window.calcPrezzoMinimoOperativo = calcPrezzoMinimoOperativo;
