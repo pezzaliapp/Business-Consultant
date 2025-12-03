@@ -194,6 +194,64 @@ function calcBreakEven() {
     " — Margine di contribuzione = " + formatPercent(margineContribPerc * 100);
 }
 
+// 7) BREAK-EVEN CON MARGINE OPERATIVO
+function calcBreakEvenOperativo() {
+  const out = document.getElementById('outBreakevenOpe');
+  let costiFissi = parseFloat(document.getElementById('costi-fissi-ope').value);
+  let prezzoUnitario = parseFloat(document.getElementById('prezzo-unitario-ope').value);
+  let costoVariabile = parseFloat(document.getElementById('costo-variabile-ope').value);
+  let margineOp = parseFloat(document.getElementById('margine-operativo').value);
+
+  if (isNaN(costiFissi) || costiFissi <= 0) {
+    out.textContent = "Inserisci costi fissi validi.";
+    out.classList.add('error');
+    return;
+  }
+
+  if (isNaN(prezzoUnitario) || prezzoUnitario <= 0) {
+    out.textContent = "Inserisci un prezzo unitario valido.";
+    out.classList.add('error');
+    return;
+  }
+
+  if (isNaN(costoVariabile) || costoVariabile < 0) {
+    out.textContent = "Inserisci un costo variabile unitario valido (anche 0).";
+    out.classList.add('error');
+    return;
+  }
+
+  if (isNaN(margineOp) || margineOp < 0 || margineOp >= 100) {
+    out.textContent = "Inserisci un margine operativo desiderato tra 0 e 100.";
+    out.classList.add('error');
+    return;
+  }
+
+  const m = margineOp / 100;
+  const denom = prezzoUnitario * (1 - m) - costoVariabile;
+
+  if (denom <= 0) {
+    out.textContent = "Con questi parametri il margine desiderato è irraggiungibile. Aumenta il prezzo o riduci costi variabili.";
+    out.classList.add('error');
+    return;
+  }
+
+  out.classList.remove('error');
+
+  const qRaw = costiFissi / denom;
+  const q = Math.ceil(qRaw);
+
+  const fatturato = q * prezzoUnitario;
+  const contribuzioneUnit = prezzoUnitario - costoVariabile;
+  const utileOperativo = contribuzioneUnit * q - costiFissi;
+  const margineOpReale = utileOperativo / fatturato;
+
+  out.textContent =
+    "Quantità per margine operativo = " + q + " unità" +
+    " — Fatturato atteso = " + formatMoney(fatturato) +
+    " — Utile operativo = " + formatMoney(utileOperativo) +
+    " — Margine operativo effettivo = " + formatPercent(margineOpReale * 100);
+}
+
 // Hook bottoni + invio
 window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('btn-margine')
@@ -213,6 +271,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('btn-breakeven')
     .addEventListener('click', calcBreakEven);
+
+  document.getElementById('btn-breakeven-ope')
+    .addEventListener('click', calcBreakEvenOperativo);
 
   document.getElementById('margine').addEventListener('keyup', e => {
     if (e.key === 'Enter') calcFromMargine();
@@ -260,5 +321,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('costo-variabile').addEventListener('keyup', e => {
     if (e.key === 'Enter') calcBreakEven();
+  });
+
+  document.getElementById('costi-fissi-ope').addEventListener('keyup', e => {
+    if (e.key === 'Enter') calcBreakEvenOperativo();
+  });
+
+  document.getElementById('prezzo-unitario-ope').addEventListener('keyup', e => {
+    if (e.key === 'Enter') calcBreakEvenOperativo();
+  });
+
+  document.getElementById('costo-variabile-ope').addEventListener('keyup', e => {
+    if (e.key === 'Enter') calcBreakEvenOperativo();
+  });
+
+  document.getElementById('margine-operativo').addEventListener('keyup', e => {
+    if (e.key === 'Enter') calcBreakEvenOperativo();
   });
 });
