@@ -197,7 +197,7 @@ function calcBreakEven() {
 // 7) BREAK-EVEN CON MARGINE OPERATIVO
 function calcBreakEvenOperativo() {
   const out = document.getElementById('outBreakevenOpe');
-  if (!out) return; // sicurezza: se manca il <p>, esce senza errore
+  if (!out) return;
 
   let costiFissi = parseFloat(document.getElementById('costi-fissi-ope').value);
   let prezzoUnitario = parseFloat(document.getElementById('prezzo-unitario-ope').value);
