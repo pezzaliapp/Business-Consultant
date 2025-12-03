@@ -197,6 +197,8 @@ function calcBreakEven() {
 // 7) BREAK-EVEN CON MARGINE OPERATIVO
 function calcBreakEvenOperativo() {
   const out = document.getElementById('outBreakevenOpe');
+  if (!out) return; // sicurezza: se manca il <p>, esce senza errore
+
   let costiFissi = parseFloat(document.getElementById('costi-fissi-ope').value);
   let prezzoUnitario = parseFloat(document.getElementById('prezzo-unitario-ope').value);
   let costoVariabile = parseFloat(document.getElementById('costo-variabile-ope').value);
@@ -293,3 +295,6 @@ window.addEventListener('DOMContentLoaded', () => {
   on('costo-variabile-ope', 'keyup', e => { if (e.key === 'Enter') calcBreakEvenOperativo(); });
   on('margine-operativo', 'keyup', e => { if (e.key === 'Enter') calcBreakEvenOperativo(); });
 });
+
+// espone la funzione per l'onclick inline del bottone 7
+window.calcBreakEvenOperativo = calcBreakEvenOperativo;
