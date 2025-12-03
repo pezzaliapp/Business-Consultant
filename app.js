@@ -254,6 +254,65 @@ function calcBreakEvenOperativo() {
     " — Margine operativo effettivo = " + formatPercent(margineOpReale * 100);
 }
 
+// 8) PREZZO MINIMO PER MARGINE OPERATIVO
+function calcPrezzoMinimoOperativo() {
+  const out = document.getElementById('outPrezzoMinimoOpe');
+  if (!out) return;
+
+  let costiFissi = parseFloat(document.getElementById('costi-fissi-min').value);
+  let costoVariabile = parseFloat(document.getElementById('costo-variabile-min').value);
+  let quantita = parseFloat(document.getElementById('quantita-min').value);
+  let margineOp = parseFloat(document.getElementById('margine-operativo-min').value);
+
+  if (isNaN(costiFissi) || costiFissi <= 0) {
+    out.textContent = "Inserisci costi fissi validi.";
+    out.classList.add('error');
+    return;
+  }
+
+  if (isNaN(costoVariabile) || costoVariabile < 0) {
+    out.textContent = "Inserisci un costo variabile unitario valido (anche 0).";
+    out.classList.add('error');
+    return;
+  }
+
+  if (isNaN(quantita) || quantita <= 0) {
+    out.textContent = "Inserisci una quantità prevista maggiore di 0.";
+    out.classList.add('error');
+    return;
+  }
+
+  if (isNaN(margineOp) || margineOp < 0 || margineOp >= 100) {
+    out.textContent = "Inserisci un margine operativo desiderato tra 0 e 100.";
+    out.classList.add('error');
+    return;
+  }
+
+  const m = margineOp / 100;
+  const denom = quantita * (1 - m);
+
+  if (denom <= 0) {
+    out.textContent = "Con questi parametri il margine desiderato è irraggiungibile. Aumenta la quantità o riduci il margine.";
+    out.classList.add('error');
+    return;
+  }
+
+  out.classList.remove('error');
+
+  // Prezzo minimo = [ Q * Cv + CF ] / [ Q * (1 - m) ]
+  const prezzoMinimo = (quantita * costoVariabile + costiFissi) / denom;
+  const fatturato = prezzoMinimo * quantita;
+  const contribuzioneUnit = prezzoMinimo - costoVariabile;
+  const utileOperativo = contribuzioneUnit * quantita - costiFissi;
+  const margineOpReale = utileOperativo / fatturato;
+
+  out.textContent =
+    "Prezzo minimo unitario = " + formatMoney(prezzoMinimo) +
+    " — Fatturato minimo = " + formatMoney(fatturato) +
+    " — Utile operativo atteso = " + formatMoney(utileOperativo) +
+    " — Margine operativo effettivo = " + formatPercent(margineOpReale * 100);
+}
+
 // Hook bottoni + invio (versione sicura)
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -271,6 +330,7 @@ window.addEventListener('DOMContentLoaded', () => {
   on('btn-prezzo-netto', 'click', calcPrezzoNettoReale);
   on('btn-breakeven', 'click', calcBreakEven);
   on('btn-breakeven-ope', 'click', calcBreakEvenOperativo);
+  on('btn-prezzo-minimo-ope', 'click', calcPrezzoMinimoOperativo);
 
   // --- ENTER KEY (input fields) ---
   on('margine', 'keyup', e => { if (e.key === 'Enter') calcFromMargine(); });
@@ -294,7 +354,13 @@ window.addEventListener('DOMContentLoaded', () => {
   on('prezzo-unitario-ope', 'keyup', e => { if (e.key === 'Enter') calcBreakEvenOperativo(); });
   on('costo-variabile-ope', 'keyup', e => { if (e.key === 'Enter') calcBreakEvenOperativo(); });
   on('margine-operativo', 'keyup', e => { if (e.key === 'Enter') calcBreakEvenOperativo(); });
+
+  on('costi-fissi-min', 'keyup', e => { if (e.key === 'Enter') calcPrezzoMinimoOperativo(); });
+  on('costo-variabile-min', 'keyup', e => { if (e.key === 'Enter') calcPrezzoMinimoOperativo(); });
+  on('quantita-min', 'keyup', e => { if (e.key === 'Enter') calcPrezzoMinimoOperativo(); });
+  on('margine-operativo-min', 'keyup', e => { if (e.key === 'Enter') calcPrezzoMinimoOperativo(); });
 });
 
-// espone la funzione per l'onclick inline del bottone 7
+// espone le funzioni per eventuali onclick inline
 window.calcBreakEvenOperativo = calcBreakEvenOperativo;
+window.calcPrezzoMinimoOperativo = calcPrezzoMinimoOperativo;
