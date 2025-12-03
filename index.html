@@ -35,7 +35,7 @@
       </p>
 
       <div class="grid">
-        <!-- MARGINE → RICARICO -->
+        <!-- 1. MARGINE → RICARICO -->
         <div class="panel">
           <h2>1. Da Margine a Ricarico</h2>
           <label for="margine">Margine sul prezzo (%)</label>
@@ -45,7 +45,7 @@
           <p class="note">Formula: ricarico = margine / (1 − margine)</p>
         </div>
 
-        <!-- RICARICO → MARGINE -->
+        <!-- 2. RICARICO → MARGINE -->
         <div class="panel">
           <h2>2. Da Ricarico a Margine</h2>
           <label for="ricarico">Ricarico / mark-up sul costo (%)</label>
@@ -55,7 +55,7 @@
           <p class="note">Formula: margine = ricarico / (1 + ricarico)</p>
         </div>
 
-        <!-- PREZZO DA COSTO + MARGINE -->
+        <!-- 3. PREZZO DA COSTO + MARGINE -->
         <div class="panel">
           <h2>3. Prezzo con margine desiderato</h2>
           <label for="costo-prezzo">Costo (€)</label>
@@ -71,118 +71,119 @@
             Il margine è sul prezzo, il ricarico è sul costo.
           </p>
         </div>
-        <!-- COSTO + RICARICO → PREZZO + MARGINE REALE -->
-    <div class="panel">
-    <h2>4. Prezzo e Margine da Costo + Ricarico</h2>
 
-    <label for="costo-ricarico">Costo (€)</label>
-    <input id="costo-ricarico" type="number" step="0.01" placeholder="Es. 6800">
+        <!-- 4. COSTO + RICARICO → PREZZO + MARGINE REALE -->
+        <div class="panel">
+          <h2>4. Prezzo e Margine da Costo + Ricarico</h2>
 
-    <label for="ricarico-prezzo" style="margin-top:8px;">Ricarico (%)</label>
-    <input id="ricarico-prezzo" type="number" step="0.01" placeholder="Es. 42.86">
+          <label for="costo-ricarico">Costo (€)</label>
+          <input id="costo-ricarico" type="number" step="0.01" placeholder="Es. 6800">
 
-    <button type="button" id="btn-prezzo-ricarico">Calcola Prezzo e Margine</button>
-    <p id="outPrezzoRicarico" class="result"></p>
+          <label for="ricarico-prezzo" style="margin-top:8px;">Ricarico (%)</label>
+          <input id="ricarico-prezzo" type="number" step="0.01" placeholder="Es. 42.86">
 
-    <p class="note">
-    Prezzo = costo × (1 + ricarico).<br>
-    Margine = utile / prezzo di vendita.
-  </p>
+          <button type="button" id="btn-prezzo-ricarico">Calcola Prezzo e Margine</button>
+          <p id="outPrezzoRicarico" class="result"></p>
+
+          <p class="note">
+            Prezzo = costo × (1 + ricarico).<br>
+            Margine = utile / prezzo di vendita.
+          </p>
         </div>
-<!-- 5. COSTO MERCE + COSTI INTERNI + MARGINE → PREZZO NETTO REALE -->
-<div class="panel">
-  <h2>5. Prezzo con margine netto reale</h2>
 
-  <label for="costo-merce">Costo merce (€)</label>
-  <input id="costo-merce" type="number" step="0.01" placeholder="Es. 6800">
+        <!-- 5. COSTO MERCE + COSTI INTERNI + MARGINE → PREZZO NETTO REALE -->
+        <div class="panel">
+          <h2>5. Prezzo con margine netto reale</h2>
 
-  <label for="costi-interni" style="margin-top:8px;">Costi interni (€)</label>
-  <input id="costi-interni" type="number" step="0.01" placeholder="Es. 250">
+          <label for="costo-merce">Costo merce (€)</label>
+          <input id="costo-merce" type="number" step="0.01" placeholder="Es. 6800">
 
-  <label for="margine-netto" style="margin-top:8px;">Margine desiderato (%)</label>
-  <input id="margine-netto" type="number" step="0.01" placeholder="Es. 30">
+          <label for="costi-interni" style="margin-top:8px;">Costi interni (€)</label>
+          <input id="costi-interni" type="number" step="0.01" placeholder="Es. 250">
 
-  <button type="button" id="btn-prezzo-netto">Calcola prezzo netto reale</button>
-  <p id="outPrezzoNetto" class="result"></p>
+          <label for="margine-netto" style="margin-top:8px;">Margine desiderato (%)</label>
+          <input id="margine-netto" type="number" step="0.01" placeholder="Es. 30">
 
-  <p class="note">
-    Prezzo = (costo merce + costi interni) / (1 − margine).<br>
-    Ricarico calcolato sul costo totale (merce + costi interni).
-  </p>
+          <button type="button" id="btn-prezzo-netto">Calcola prezzo netto reale</button>
+          <p id="outPrezzoNetto" class="result"></p>
+
+          <p class="note">
+            Prezzo = (costo merce + costi interni) / (1 − margine).<br>
+            Ricarico calcolato sul costo totale (merce + costi interni).
+          </p>
         </div>
+
         <!-- 6. BREAK-EVEN SEMPLIFICATO -->
-<div class="panel">
-  <h2>6. Break-even semplificato</h2>
+        <div class="panel">
+          <h2>6. Break-even semplificato</h2>
 
-  <label for="costi-fissi">Costi fissi totali (€)</label>
-  <input id="costi-fissi" type="number" step="0.01" placeholder="Es. 25000">
+          <label for="costi-fissi">Costi fissi totali (€)</label>
+          <input id="costi-fissi" type="number" step="0.01" placeholder="Es. 25000">
 
-  <label for="prezzo-unitario" style="margin-top:8px;">Prezzo unitario (€)</label>
-  <input id="prezzo-unitario" type="number" step="0.01" placeholder="Es. 1200">
+          <label for="prezzo-unitario" style="margin-top:8px;">Prezzo unitario (€)</label>
+          <input id="prezzo-unitario" type="number" step="0.01" placeholder="Es. 1200">
 
-  <label for="costo-variabile" style="margin-top:8px;">Costo variabile unitario (€)</label>
-  <input id="costo-variabile" type="number" step="0.01" placeholder="Es. 800">
+          <label for="costo-variabile" style="margin-top:8px;">Costo variabile unitario (€)</label>
+          <input id="costo-variabile" type="number" step="0.01" placeholder="Es. 800">
 
-  <button type="button" id="btn-breakeven">Calcola punto di pareggio</button>
-  <p id="outBreakeven" class="result"></p>
+          <button type="button" id="btn-breakeven">Calcola punto di pareggio</button>
+          <p id="outBreakeven" class="result"></p>
 
-  <p class="note">
-    Punto di pareggio (Q) = Costi fissi / (Prezzo unitario − Costo variabile unitario).<br>
-    Calcolo anche fatturato di pareggio e margine di contribuzione.
-  </p>
-</div>
-     <!-- 7. BREAK-EVEN CON MARGINE OPERATIVO -->
-<div class="panel">
-  <h2>7. Break-even con margine operativo</h2>
+          <p class="note">
+            Punto di pareggio (Q) = Costi fissi / (Prezzo unitario − Costo variabile unitario).<br>
+            Calcolo anche fatturato di pareggio e margine di contribuzione.
+          </p>
+        </div>
 
-  <label for="costi-fissi-ope">Costi fissi totali (€)</label>
-  <input id="costi-fissi-ope" type="number" step="0.01" placeholder="Es. 25000">
+        <!-- 7. BREAK-EVEN CON MARGINE OPERATIVO -->
+        <div class="panel">
+          <h2>7. Break-even con margine operativo</h2>
 
-  <label for="prezzo-unitario-ope" style="margin-top:8px;">Prezzo unitario (€)</label>
-  <input id="prezzo-unitario-ope" type="number" step="0.01" placeholder="Es. 1200">
+          <label for="costi-fissi-ope">Costi fissi totali (€)</label>
+          <input id="costi-fissi-ope" type="number" step="0.01" placeholder="Es. 25000">
 
-  <label for="costo-variabile-ope" style="margin-top:8px;">Costo variabile unitario (€)</label>
-  <input id="costo-variabile-ope" type="number" step="0.01" placeholder="Es. 800">
+          <label for="prezzo-unitario-ope" style="margin-top:8px;">Prezzo unitario (€)</label>
+          <input id="prezzo-unitario-ope" type="number" step="0.01" placeholder="Es. 1200">
 
-  <label for="margine-operativo" style="margin-top:8px;">Margine operativo desiderato (%)</label>
-  <input id="margine-operativo" type="number" step="0.01" placeholder="Es. 10">
+          <label for="costo-variabile-ope" style="margin-top:8px;">Costo variabile unitario (€)</label>
+          <input id="costo-variabile-ope" type="number" step="0.01" placeholder="Es. 800">
 
- <button type="button" id="btn-breakeven-ope" onclick="calcBreakEvenOperativo()">
-  Calcola break-even con margine
-</button>
-  <p id="outBreakevenOpe" class="result"></p>
+          <label for="margine-operativo" style="margin-top:8px;">Margine operativo desiderato (%)</label>
+          <input id="margine-operativo" type="number" step="0.01" placeholder="Es. 10">
 
-  <p class="note">
-    Q = Costi fissi / [ Prezzo × (1 − margine operativo) − Costo variabile ].<br>
-    Margine operativo = Utile operativo / Fatturato.
-  </p>
-</div>
+          <button type="button" id="btn-breakeven-ope">Calcola break-even con margine</button>
+          <p id="outBreakevenOpe" class="result"></p>
+
+          <p class="note">
+            Q = Costi fissi / [ Prezzo × (1 − margine operativo) − Costo variabile ].<br>
+            Margine operativo = Utile operativo / Fatturato.
+          </p>
+        </div>
+
         <!-- 8. PREZZO MINIMO PER MARGINE OPERATIVO -->
-<div class="panel">
-  <h2>8. Prezzo minimo per margine operativo</h2>
+        <div class="panel">
+          <h2>8. Prezzo minimo per margine operativo</h2>
 
-  <label for="costi-fissi-min">Costi fissi totali (€)</label>
-  <input id="costi-fissi-min" type="number" step="0.01" placeholder="Es. 25000">
+          <label for="costi-fissi-min">Costi fissi totali (€)</label>
+          <input id="costi-fissi-min" type="number" step="0.01" placeholder="Es. 25000">
 
-  <label for="costo-variabile-min" style="margin-top:8px;">Costo variabile unitario (€)</label>
-  <input id="costo-variabile-min" type="number" step="0.01" placeholder="Es. 800">
+          <label for="costo-variabile-min" style="margin-top:8px;">Costo variabile unitario (€)</label>
+          <input id="costo-variabile-min" type="number" step="0.01" placeholder="Es. 800">
 
-  <label for="quantita-min" style="margin-top:8px;">Quantità prevista (unità)</label>
-  <input id="quantita-min" type="number" step="1" placeholder="Es. 90">
+          <label for="quantita-min" style="margin-top:8px;">Quantità prevista (unità)</label>
+          <input id="quantita-min" type="number" step="1" placeholder="Es. 90">
 
-  <label for="margine-operativo-min" style="margin-top:8px;">Margine operativo desiderato (%)</label>
-  <input id="margine-operativo-min" type="number" step="0.01" placeholder="Es. 10">
+          <label for="margine-operativo-min" style="margin-top:8px;">Margine operativo desiderato (%)</label>
+          <input id="margine-operativo-min" type="number" step="0.01" placeholder="Es. 10">
 
-  <button type="button" id="btn-prezzo-minimo-ope" onclick="calcPrezzoMinimoOperativo()">
-    Calcola prezzo minimo
-  </button>
-  <p id="outPrezzoMinimoOpe" class="result"></p>
+          <button type="button" id="btn-prezzo-minimo-ope">Calcola prezzo minimo</button>
+          <p id="outPrezzoMinimoOpe" class="result"></p>
 
-  <p class="note">
-    Prezzo minimo = [ Q × costo variabile + costi fissi ] / [ Q × (1 − margine operativo) ].<br>
-    Margine operativo = Utile operativo / Fatturato.
-  </p>
-</div>
+          <p class="note">
+            Prezzo minimo = [ Q × costo variabile + costi fissi ] / [ Q × (1 − margine operativo) ].<br>
+            Margine operativo = Utile operativo / Fatturato.
+          </p>
+        </div>
       </div>
     </section>
   </main>
