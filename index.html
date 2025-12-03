@@ -131,6 +131,30 @@
     Calcolo anche fatturato di pareggio e margine di contribuzione.
   </p>
 </div>
+        <!-- 7. BREAK-EVEN CON MARGINE OPERATIVO -->
+<div class="panel">
+  <h2>7. Break-even con margine operativo</h2>
+
+  <label for="costi-fissi-ope">Costi fissi totali (€)</label>
+  <input id="costi-fissi-ope" type="number" step="0.01" placeholder="Es. 25000">
+
+  <label for="prezzo-unitario-ope" style="margin-top:8px;">Prezzo unitario (€)</label>
+  <input id="prezzo-unitario-ope" type="number" step="0.01" placeholder="Es. 1200">
+
+  <label for="costo-variabile-ope" style="margin-top:8px;">Costo variabile unitario (€)</label>
+  <input id="costo-variabile-ope" type="number" step="0.01" placeholder="Es. 800">
+
+  <label for="margine-operativo" style="margin-top:8px;">Margine operativo desiderato (%)</label>
+  <input id="margine-operativo" type="number" step="0.01" placeholder="Es. 10">
+
+  <button type="button" id="btn-breakeven-ope">Calcola break-even con margine</button>
+  <p id="outBreakevenOpe" class="result"></p>
+
+  <p class="note">
+    Q = Costi fissi / [ Prezzo × (1 − margine operativo) − Costo variabile ].<br>
+    Margine operativo = (Utile operativo / Fatturato).
+  </p>
+</div>
       </div>
     </section>
   </main>
